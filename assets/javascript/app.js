@@ -1,6 +1,6 @@
-$(function(){
-    createButtons();
-})
+$(document).ready(function(){
+    
+
 
 var topics= ["RHOA", "GOT", "Married to Medicine"];
 
@@ -13,6 +13,7 @@ function createButtons(){
         $("#buttons").append(btn);
     }
 }
+createButtons();
 
 $(document).on("click",".topic-btn",function(){
     $("#gifs").empty();
@@ -22,7 +23,7 @@ $(document).on("click",".topic-btn",function(){
         url: queryURL,
         method: "GET",
     })
-    .then(function(response){
+    .done(function(response){
         for(var i=0; i<response.data.length;i++){
             var topicsDiv =$("<div class = 'search-item'>");
             var rating = response.data[i].rating;
@@ -45,11 +46,11 @@ $(document).on("click",".topic-btn",function(){
 $(".gifImage").on("click",function(){
     var state = $(this).attr("data-state");
     if(state == "still"){
-        $(this).attr("src",$("this").attr("data-animate"));
-        $(this).attr("data-state","animate");
+        $(this).attr("src", $("this").attr("data-animate"));
+        $(this).attr("data-state", "animate");
     }else{
-        $(this).attr("src",$("this").attr("data-still"));
-        $(this).attr("data-state","still");
+        $(this).attr("src", $("this").attr("data-still"));
+        $(this).attr("data-state", "still");
     }
 })
 
@@ -59,3 +60,4 @@ $("#add-Gif").on("click",function(event){
     topics.push(newGif);
     createButtons();  
 })
+});
